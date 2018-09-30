@@ -20,6 +20,11 @@ class linkList {
 	//Default Constructor
 	public linkList () {}
 	
+	public void creatLinkList(List<Integer> integerList)
+	{
+	
+	}
+
 	//adds at the end of the list
 	public void add (Object data)
 	{	
