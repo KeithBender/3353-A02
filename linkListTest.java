@@ -26,7 +26,7 @@ class linkList {
 		//initialize if it is only he 1st element
 		if (head == null)
 		{
-			head = new Node(Data);
+			head = new Node(data);
 		}
 
 		Node temp = new Node(data);
@@ -36,11 +36,28 @@ class linkList {
 		{
 			while (currentHead.getNext() != null) 
 			{
-				currentHead = currentHead.getnext();
+				currentHead = currentHead.getNext();
 			}
 			currentHead.setNext(temp);
 		}
 		incrementCounter();
+	}
+
+	public void add (Object data, int index)
+	{
+		Node temp = new Node(data);
+		Node currentHead = head;
+
+		if (currentHead != null)
+		{
+			for (int i = 0; i < index && currentHead.getNext() != null; i++)
+			{
+				currentHead = currentHead.getNext();
+			}
+		}
+			temp.setNext(currentHead.getNext());
+			currentHead.setNext(temp);
+			incrementCounter();
 	}
 
 	public int size ()
@@ -72,10 +89,16 @@ class linkList {
 		Node next;
 		Object data;
 
-		public Node (Object value, Node nextValue) 
+		public Node (Object value) 
 		{
 			next = null;
 			data = value;
+		}
+
+		public Node (Object value, Node nextValue)
+		{
+			next = nextValue;
+			data = value;	
 		}
 
 		public Object getData()
