@@ -17,16 +17,42 @@ public class linkListTest
 
 class linkList {
 	//Public
-	
 	//Default Constructor
 	public linkList () {}
 	
+	//adds at the end of the list
+	public void add (Object data)
+	{	
+		//initialize if it is only he 1st element
+		if (head == null)
+		{
+			head = new Node(Data);
+		}
+
+		Node temp = new Node(data);
+		Node currentHead = head;
+
+		if (currentHead != null)
+		{
+			while (currentHead.getNext() != null) 
+			{
+				currentHead = currentHead.getnext();
+			}
+			currentHead.setNext(temp);
+		}
+		incrementCounter();
+	}
+
+	public int size ()
+	{
+		return getCounter();
+	}	
 
 	//Private
 	private static int counter;
 	private Node head;
 	
-	private static int getCounter ()
+	private static int getCounter()
 	{
 		return counter;
 	}
@@ -71,7 +97,5 @@ class linkList {
 		{
 			next = nextValue;
 		}
-
-	
 	}
 }
