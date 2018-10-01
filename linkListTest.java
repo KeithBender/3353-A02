@@ -29,27 +29,17 @@ public class linkListTest
 		linkedList = linkedList.createLinkList(newList);
 		
 		System.out.println("List of integers");
-		for(int i = 0; i < newList.size(); i++)
-		{
-			System.out.println(newList.get(i));
-		}
+		System.out.println(linkedList.toString());
 		
 		System.out.println();
 		System.out.println("Linked List of integers");
-		for(int i = 0; i < linkedList.size(); i++) 
-		{
-			System.out.println(linkedList.get(i));
-		}
+		System.out.println(linkedList.toString());
 		
 		System.out.println();
 		System.out.println("Reverse Linked List of integers");
 		
-		LinkedList reverseList = new LinkedList();
-		reverseList = linkedList.reverseLinkedList(linkedList);
-		for(int i = 0; i < reverseList.size(); i++) 
-		{
-			System.out.println(reverseList.get(i));
-		}
+		linkedList.reverseLinkedList(linkedList);
+		System.out.println(linkedList.toString());
 	}
 }
 
@@ -74,21 +64,20 @@ class LinkedList {
 	{
 		LinkedList temp = new LinkedList();
 		temp = inputList;
-		Node current = temp.head;
-		Node prev = null;
-		Node next;
-		
-		while(current != null) 
-		{
-			next = current.next;
-			current.setNext(prev);
-			prev = current;
-			current = next;
+		Node previousElement = null;
+		Node currentElement = temp.head;
+		Node nextElement = null;
+		while (currentElement != null) {
+			nextElement = currentElement.getNext();
+			currentElement.setNext(previousElement);
+			previousElement = currentElement;
+			currentElement = nextElement;
 		}
-		temp.head = prev;
+		head = previousElement;
+
 		return temp;
 	}
-	
+
 	//adds at the end of the list
 	public void add (Object data)
 	{	
@@ -103,11 +92,11 @@ class LinkedList {
 
 		if (currentHead != null)
 		{
-			while (currentHead.getNext() != null) 
+			while (currentHead.next != null) 
 			{
-				currentHead = currentHead.getNext();
+				currentHead = currentHead.next;
 			}
-			currentHead.setNext(temp);
+			currentHead.next = temp;
 		}
 		incrementCounter();
 	}
